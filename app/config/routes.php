@@ -35,4 +35,20 @@ $router->addPost(
         'action'     => 'signup',
     ]
 );
+
+$router->addGet(
+    '/menu',
+    [
+        'controller' => 'menu',
+        'action'     => 'principal',
+    ]
+);
+
+$router->addGet(
+    '/menu/{id}',
+    [
+        'controller' => 'signup',
+        'action'     => 'signup',
+    ]
+);
 return $router;

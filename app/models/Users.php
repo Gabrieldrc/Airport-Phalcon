@@ -5,6 +5,6 @@ use Phalcon\Mvc\Model;
 
 class Users extends Model
 {
-    public $name;
-    public $email;
+    public $userName;
+    public $password;
 }
