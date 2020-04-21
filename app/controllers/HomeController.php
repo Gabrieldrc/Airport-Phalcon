@@ -4,7 +4,12 @@ use Phalcon\Mvc\Controller;
 
 class HomeController extends Controller
 {
-    public function homeAction() {}
+    public function homeAction() 
+    {
+        $this->view->render('page','logIn');
+        $this->view->finish();
+        echo $this->view->getContent();
+    }
 
     public function logInAction()
     {
@@ -23,7 +28,7 @@ class HomeController extends Controller
         }
 
         if ($data[0] === $userName && $data[1] === $password) {
-            return $this->response->redirect('menu');
+            return $this->response->redirect('principal');
         }
         $this->view->setVar('message', 'error en el username o password');
         $this->view->render('registering','fail');

@@ -37,9 +37,9 @@ $router->addPost(
 );
 
 $router->addGet(
-    '/menu',
+    '/principal',
     [
-        'controller' => 'menu',
+        'controller' => 'distribution',
         'action'     => 'principal',
     ]
 );
