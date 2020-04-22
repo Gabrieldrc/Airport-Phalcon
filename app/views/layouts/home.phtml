@@ -1,5 +1,6 @@
-<h3>Registrate</h3>
-<form action = '/signUp' method = 'Post'>
+<div class = 'formu'>
+  <h3>Log in page</h3>
+  <form action = '/logIn' method = 'Post'>
   <div class="form-group">
     <label for="exampleInputEmail1">User name</label>
     <input type="text" class="form-control" name = 'userName'>
@@ -8,9 +9,11 @@
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" name = 'password'>
   </div>
-  <button type="submit" class="btn btn-primary">Sign Up</button>
+  <button type="submit" class="btn btn-primary">Log in</button>
 </form>
 <br>
 <div>
-    <a href='/' button type="submit" class="btn btn-primary">Back</a>
+  <a href='/signUp' button type="submit" class="btn btn-primary">Sign Up</a>
+</div>
+<?php echo $this->getContent(); ?>
 </div>
