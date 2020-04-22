@@ -10,25 +10,33 @@ class SignupController extends Controller
 
     public function newSignUpAction()
     {
-        $user = new Users();
-
-        // Store and check for errors
-        $success = $user->save(
-            $this->request->getPost(),
+        $datos = $this->request->getPost();
+        $userName = $datos['userName'];
+        $errorMessage = '';
+        $find = User::findFirst(
             [
-                "userName",
-                "password",
+                "userName = '$userName'",
             ]
         );
-
-        if ($success) {
-            return $this->response->redirect('/');
+        if (!$find) {
+            $user = new User();
+            $success = $user->save(
+                [
+                    "userName" => $datos['userName'],
+                    "password" => $datos['password'],
+                ]
+            );
+            if ($success) {
+                return $this->response->redirect('/');
+            }
+            $messages = $user->getMessages();
+            // $print = '';
+            foreach ($messages as $message) {
+                $errorMessage .= $message->getMessage(). "\n";
+            }
+        } else if ($find) {
+            $errorMessage = 'the user name is already used. Try another one.';
         }
-        $messages = $user->getMessages();
-        $print = '';
-        foreach ($messages as $message) {
-            $print .= $message->getMessage(). "\n";
-        }
-        $this->view->setVar("message", $print);
+        $this->view->setVar("message", $errorMessage);
     }
 }
