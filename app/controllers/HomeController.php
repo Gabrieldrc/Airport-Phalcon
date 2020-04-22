@@ -6,9 +6,11 @@ class HomeController extends Controller
 {
     public function homeAction() 
     {
+        $this->view->getContent();
         $this->view->render('page','logIn');
         $this->view->finish();
         echo $this->view->getContent();
+        
     }
 
     public function logInAction()
