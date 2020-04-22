@@ -32,23 +32,23 @@ $router->addPost(
     '/signUp',
     [
         'controller' => 'signup',
-        'action'     => 'signup',
+        'action'     => 'newsignup',
     ]
 );
 
 $router->addGet(
     '/principal',
     [
-        'controller' => 'distribution',
+        'controller' => 'principal',
         'action'     => 'principal',
     ]
 );
 
-$router->addGet(
-    '/menu/{id}',
-    [
-        'controller' => 'signup',
-        'action'     => 'signup',
-    ]
-);
+// $router->addGet(
+//     '/menu/{id}',
+//     [
+//         'controller' => 'signup',
+//         'action'     => 'signup',
+//     ]
+// );
 return $router;

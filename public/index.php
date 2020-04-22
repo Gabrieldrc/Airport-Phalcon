@@ -12,6 +12,7 @@ $loader = new Loader();
 $loader->registerDirs(
     [
         '../app/controllers/',
+        '../app/models/',
     ]
 );
 

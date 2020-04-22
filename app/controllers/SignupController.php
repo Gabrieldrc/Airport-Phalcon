@@ -2,16 +2,13 @@
 
 use Phalcon\Mvc\Controller;
 
-class SignUpController extends Controller
+class SignupController extends Controller
 {
     public function registerAction()
     {
-        $this->view->render('registering', 'signUp');
-        $this->view->finish();
-        echo $this->view->getContent();
     }
 
-    public function signUpAction()
+    public function newSignUpAction()
     {
         $user = new Users();
 
@@ -25,19 +22,13 @@ class SignUpController extends Controller
         );
 
         if ($success) {
-            $this->view->render('registering','registered');
-        } else {
-            $messages = $user->getMessages();
-            $print = '';
-            foreach ($messages as $message) {
-                $print .= $message->getMessage(). "<br/>";
-            }
-            $this->view->setVar("message", $print);
-            $this->view->render('registering','fail');
+            return $this->response->redirect('/');
         }
-
-        $this->view->finish();
-        echo $this->view->getContent();
-
+        $messages = $user->getMessages();
+        $print = '';
+        foreach ($messages as $message) {
+            $print .= $message->getMessage(). "\n";
+        }
+        $this->view->setVar("message", $print);
     }
 }

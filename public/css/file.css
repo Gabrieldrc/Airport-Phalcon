@@ -8,7 +8,7 @@ body {
 
 /* Style the header */
 header {
-    background-image: url("./sky.jpg");
+    background-image: url("/images/sky.jpg");
     background-repeat: no-repeat;
     background-size:100% 100%;
     padding: 50px;
@@ -51,6 +51,12 @@ article {
     height: 770px;
 }
 
+.error {
+    padding: 10px;
+    text-align: left;
+    font-size: 20px;
+    color: red;
+}
 /* Clear floats after the columns */
 section:after {
     content: "";
