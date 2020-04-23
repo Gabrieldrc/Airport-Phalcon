@@ -28,7 +28,7 @@ $container->set(
                 'host'      => 'db',
                 'username'  => 'root',
                 'password'  => 'root',
-                'dbname'    => 'users',
+                'dbname'    => 'airportPhalcon',
             ]
         );
     }

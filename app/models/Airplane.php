@@ -8,5 +8,5 @@ class Airplane extends Model
     public $passengers;
     public $location;
     public $destiny;
-    public $idVuelo;
+    public $idFlight;
 }

@@ -48,7 +48,23 @@ $router->addGet(
     '/airplanes',
     [
         'controller' => 'airplanes',
-        'action'     => '',
+        'action'     => 'list',
+    ]
+);
+
+$router->addGet(
+    '/airplanes/new',
+    [
+        'controller' => 'airplanes',
+        'action'     => 'form',
+    ]
+);
+
+$router->addPost(
+    '/newAirplane',
+    [
+        'controller' => 'airplanes',
+        'action'     => 'new',
     ]
 );
 
