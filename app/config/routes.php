@@ -44,11 +44,12 @@ $router->addGet(
     ]
 );
 
-// $router->addGet(
-//     '/menu/{id}',
-//     [
-//         'controller' => 'signup',
-//         'action'     => 'signup',
-//     ]
-// );
+$router->addGet(
+    '/airplanes',
+    [
+        'controller' => 'airplanes',
+        'action'     => '',
+    ]
+);
+
 return $router;
