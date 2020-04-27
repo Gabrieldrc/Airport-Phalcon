@@ -35,15 +35,4 @@
 </table>
 <a href='/airplanes/new' button type="submit" class="btn btn-primary">+</a>
 <br>
-<?php echo $this->getContent(); ?>
-<br>
-<?php
-    if (!empty($message)) {
-        echo '
-        <div class="error">
-            <p>Sorry, the following problems were generated: '.$message.'</p>
-        </div>
-        ';
-    }
-?>
 </article>

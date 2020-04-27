@@ -13,6 +13,7 @@ $loader->registerDirs(
     [
         '../app/controllers/',
         '../app/models/',
+        '../app/services/',
     ]
 );
 
@@ -50,6 +51,13 @@ $container->set(
     'router',
     function () {
         return include '../app/config/routes.php';
+    }
+);
+
+$container->set(
+    'airplaneService',
+    function () {
+        return new AirplaneService();
     }
 );
 

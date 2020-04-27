@@ -55,15 +55,15 @@ $router->addGet(
 $router->addGet(
     '/airplanes/new',
     [
-        'controller' => 'airplanes',
+        'controller' => 'newplane',
         'action'     => 'form',
     ]
 );
 
 $router->addPost(
-    '/newAirplane',
+    '/airplanes',
     [
-        'controller' => 'airplanes',
+        'controller' => 'newplane',
         'action'     => 'new',
     ]
 );
