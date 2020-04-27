@@ -2,7 +2,7 @@
 
 class AirplaneService
 {
-    public function newPlane(String $location, int $passengers)
+    public function newAirplane(String $location, int $passengers)
     {
         /**
          * This fuction save a new Airplane on
@@ -39,12 +39,12 @@ class AirplaneService
         return $return;
     }
 
-    public function showTenAirplanes(int $from)
+    public function showTenAirplanes(int $to)
     {
         $data = Airplane::find(
             [
-                'conditions' => 'id between "'.$from.'" AND "'.($from + 10).'"',
-                'limit' => 10,
+                'conditions' => 'id between "'.($to - 9).'" AND "'.$to.'"',
+                // 'limit' => 10,
             ]
         );
         if( $data == false) {
@@ -61,5 +61,10 @@ class AirplaneService
             ];
         }
         return $airplanes;
+    }
+
+    public function countAirplanes()
+    {
+        return Airplane::count();
     }
 }

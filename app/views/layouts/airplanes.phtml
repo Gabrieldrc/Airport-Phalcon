@@ -33,6 +33,18 @@
         ?>
     </tbody>
 </table>
-<a href='/airplanes/new' button type="submit" class="btn btn-primary">+</a>
-<br>
+<div class="form-row">
+        <div class="col">
+        <a href='/airplanes/new' button type="submit" class="btn btn-primary">+</a>
+        </div>
+        <div class="col">
+            <?php
+                if ($cycle > 1) {
+                    for ($i = 1; $i <= $cycle; $i++) {
+                        echo '<a href="/airplanes/'.$i.'" button type="submit" class="btn btn-primary">'.$i.'</a>';
+                    }
+                }
+            ?>
+        </div>
+    </div>
 </article>

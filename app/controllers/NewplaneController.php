@@ -10,7 +10,7 @@ class NewplaneController extends Controller
         $location = $datos['location'];
         $passengers = $datos['passengers'];
         settype($passengers,'int');
-        $return = $this->airplaneService->newPlane($location, $passengers);
+        $return = $this->airplaneService->newAirplane($location, $passengers);
         if ($return === true) {
             return $this->response->redirect('/airplanes');
         }

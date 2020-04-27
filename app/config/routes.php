@@ -53,6 +53,14 @@ $router->addGet(
 );
 
 $router->addGet(
+    '/airplanes/{pag}',
+    [
+        'controller' => 'airplanes',
+        'action'     => 'list',
+    ]
+);
+
+$router->addGet(
     '/airplanes/new',
     [
         'controller' => 'newplane',
