@@ -1,0 +1,38 @@
+<article>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">#passengers</th>
+            <th scope="col">location</th>
+            <th scope="col">destiny</th>
+            <th scope="col">idFlight</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        $airplanes;
+        if (!empty($airplanes)) {
+            foreach ($airplanes as $airplane) {
+                $print = '<tr>'
+                .'<th scope = "row">'.$airplane['id'].'</th>'
+                .'<td>'.$airplane['passengers'].'</td>'
+                .'<td>'.$airplane['location'].'</td>';
+                if (empty($airplane['destiny']) && empty($airplane['idFlight'])) {
+                    $print .= '<td>Not assigned</td>';
+                } else {
+                    $print .= '<td>'.$airplane['destiny'].'</td>'
+                    .'<td>'.$airplane['idFlight'].'</td>';
+                }
+                $print .= '</tr>';
+                echo $print;
+            }
+        } else {
+            echo '<tr ><th scope = "row">There are no registered planes</th></tr>';
+        }
+        ?>
+    </tbody>
+</table>
+<a href='/airplanes/new' button type="submit" class="btn btn-primary">+</a>
+<br>
+</article>

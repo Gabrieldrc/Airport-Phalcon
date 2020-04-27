@@ -26,7 +26,7 @@ services:
       - ./db:/var/lib/mysql
     environment: 
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: users
+      MYSQL_DATABASE: airportPhalcon
   adminer:
     image: adminer
     restart: always
