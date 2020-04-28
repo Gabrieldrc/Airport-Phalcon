@@ -61,6 +61,13 @@ $container->set(
     }
 );
 
+$container->set(
+    'flightService',
+    function () {
+        return new FlightService();
+    }
+);
+
 $application = new Application($container);
 
 try {

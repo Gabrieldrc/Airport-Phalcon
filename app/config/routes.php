@@ -75,5 +75,37 @@ $router->addPost(
         'action'     => 'new',
     ]
 );
+//================
+$router->addGet(
+    '/flights',
+    [
+        'controller' => 'flights',
+        'action'     => 'list',
+    ]
+);
+
+$router->addGet(
+    '/flights/{pag}',
+    [
+        'controller' => 'flights',
+        'action'     => 'list',
+    ]
+);
+
+$router->addGet(
+    '/flights/new',
+    [
+        'controller' => 'newflight',
+        'action'     => 'form',
+    ]
+);
+
+$router->addPost(
+    '/flights',
+    [
+        'controller' => 'newflight',
+        'action'     => 'new',
+    ]
+);
 
 return $router;

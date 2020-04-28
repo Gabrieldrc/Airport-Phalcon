@@ -13,6 +13,14 @@ CREATE TABLE IF NOT EXISTS `airplane` (
     `idFlight` VARCHAR(255) NULL
                                  );
 
+CREATE TABLE IF NOT EXISTS `flight` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `passengers` INT(255) NOT NULL,
+    `origin` VARCHAR(255) NOT NULL,
+    `destiny` VARCHAR(255) NULL,
+    `idAirplane` VARCHAR(255) NULL
+                                 );
+
 -- $id;
 -- $passengers;
 -- $location;
