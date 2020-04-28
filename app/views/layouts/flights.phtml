@@ -1,0 +1,50 @@
+<article>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">#passengers</th>
+            <th scope="col">origin</th>
+            <th scope="col">destiny</th>
+            <th scope="col">idAirplane</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        $flights;
+        if (!empty($flights)) {
+            foreach ($flights as $flight) {
+                $print = '<tr>'
+                .'<th scope = "row">'.$flight['id'].'</th>'
+                .'<td>'.$flight['passengers'].'</td>'
+                .'<td>'.$flight['origin'].'</td>'
+                .'<td>'.$flight['destiny'].'</td>';
+                if (empty($flight['idAirplane'])) {
+                    $print .= '<td>Not assigned</td>';
+                } else {
+                    $print .= '<td>'.$flight['idAirplane'].'</td>';
+                }
+                $print .= '</tr>';
+                echo $print;
+            }
+        } else {
+            echo '<tr ><th scope = "row">There are no registered flights</th></tr>';
+        }
+        ?>
+    </tbody>
+</table>
+<div class="form-row">
+        <div class="col">
+        <a href='/flights/new' button type="submit" class="btn btn-primary">+</a>
+        </div>
+        <div class="col">
+            <?php
+                if ($cycle > 1) {
+                    for ($i = 1; $i <= $cycle; $i++) {
+                        echo '<a href="/flights/'.$i.'" button type="submit" class="btn btn-primary">'.$i.'</a>';
+                    }
+                }
+            ?>
+        </div>
+    </div>
+</article>

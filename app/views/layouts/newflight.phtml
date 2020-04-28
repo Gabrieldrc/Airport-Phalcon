@@ -1,0 +1,27 @@
+<div class='formu'>
+    <form action = '/flights' method = 'Post'>
+    <h4>Register a new flight:</h4>
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Origin" name="origin">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Destiny" name="destiny">
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+<br>
+<?php
+    if (!empty($message)) {
+        echo '
+        <div class="error">
+        <p>Sorry, the following problems were generated: '.$message.'</p>
+        </div>
+        ';
+    }
+    ?>
+
+</div>
