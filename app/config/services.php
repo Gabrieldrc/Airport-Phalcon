@@ -38,7 +38,7 @@ $container->set(
 $container->set(
     'router',
     function () {
-        return include APP_PATH . '/app/config/routes.php';
+        return include APP_PATH . 'app/config/routes.php';
     }
 );
 
