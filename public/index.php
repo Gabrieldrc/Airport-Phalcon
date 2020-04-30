@@ -1,72 +1,20 @@
 <?php
 
-// use Phalcon\Url;
-use Phalcon\Loader;
-use Phalcon\Mvc\View;
 use Phalcon\Mvc\Application;
-use Phalcon\Di\FactoryDefault;
-use Phalcon\Db\Adapter\Pdo\Mysql;
+use Phalcon\Config\Adapter\Ini as ConfigIni;
 
-$loader = new Loader();
-
-$loader->registerDirs(
-    [
-        '../app/controllers/',
-        '../app/models/',
-        '../app/services/',
-    ]
+define(
+    'APP_PATH',
+    realpath('..') . '/'
 );
 
-$loader->register();
-
-$container = new FactoryDefault();
-
-$container->set(
-    'db',
-    function () {
-        return new Mysql(
-            [
-                'host'      => 'db',
-                'username'  => 'root',
-                'password'  => 'root',
-                'dbname'    => 'airportPhalcon',
-            ]
-        );
-    }
+$config = new ConfigIni(
+    APP_PATH.'app/config/config.ini'
 );
 
-// Registering the view component
-$container->set(
-    'view',
-    function () {
-        $view = new View();
+require APP_PATH.'app/config/loader.php';
 
-        $view->setViewsDir('../app/views/');
-
-        return $view;
-    }
-);
-
-$container->set(
-    'router',
-    function () {
-        return include '../app/config/routes.php';
-    }
-);
-
-$container->set(
-    'airplaneService',
-    function () {
-        return new AirplaneService();
-    }
-);
-
-$container->set(
-    'flightService',
-    function () {
-        return new FlightService();
-    }
-);
+require APP_PATH.'app/config/services.php';
 
 $application = new Application($container);
 
