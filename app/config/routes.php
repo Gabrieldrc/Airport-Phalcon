@@ -108,4 +108,12 @@ $router->addPost(
     ]
 );
 
+$router->addGet(
+    '/logOut',
+    [
+        'controller' => 'home',
+        'action'     => 'logout',
+    ]
+);
+
 return $router;

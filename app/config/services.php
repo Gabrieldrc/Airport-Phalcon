@@ -1,9 +1,11 @@
 <?php
 
 use Phalcon\Mvc\View;
-use Phalcon\Http\Message\Uri;
+use Phalcon\Mvc\Dispatcher;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Db\Adapter\Pdo\Mysql;
+use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Session\Adapter\Files as Session;
 
 $container = new FactoryDefault();
 
@@ -24,10 +26,10 @@ $container->set(
 // Registering the view component
 $container->set(
     'view',
-    function () {
+    function () use ($config){
         $view = new View();
 
-        $view->setViewsDir('../app/views/');
+        $view->setViewsDir(APP_PATH . $config->application->viewsDir);
 
         return $view;
     }
@@ -55,8 +57,38 @@ $container->set(
 );
 
 $container->set(
-    'uri',
+    'session',
     function () {
-        return new Uri();
+        $session = new Session();
+
+        $session->start();
+
+        return $session;
+    }
+);
+
+$container->set(
+    'dispatcher',
+    function () {
+        // Create an events manager
+        $eventsManager = new EventsManager();
+
+        // Listen for events produced in the dispatcher using the Security plugin
+        $eventsManager->attach(
+            'dispatch:beforeExecuteRoute',
+            new SecurityPlugin()
+        );
+
+        // Handle exceptions and not-found exceptions using NotFoundPlugin
+        // $eventsManager->attach(
+        //     'dispatch:beforeException',
+        //     new NotFoundPlugin()
+        // );
+
+        $dispatcher = new Dispatcher();
+
+        $dispatcher->setEventsManager($eventsManager);
+
+        return $dispatcher;
     }
 );
