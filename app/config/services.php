@@ -27,7 +27,7 @@ $container->set(
     function () {
         $view = new View();
 
-        $view->setViewsDir('../app/views/');
+        $view->setViewsDir(APP_PATH . 'app/views/');
 
         return $view;
     }
@@ -36,7 +36,7 @@ $container->set(
 $container->set(
     'router',
     function () {
-        return include APP_PATH . '/app/config/routes.php';
+        return include APP_PATH . 'app/config/routes.php';
     }
 );
 
