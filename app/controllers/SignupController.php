@@ -20,17 +20,13 @@ class SignupController extends Controller
         );
         if (!$find) {
             $user = new User();
-            $success = $user->save(
-                [
-                    "userName" => $datos['userName'],
-                    "password" => $datos['password'],
-                ]
-            );
+            $user->userName = $datos['userName'];
+            $user->password = $this->security->hash($datos['password']);
+            $success = $user->save();
             if ($success) {
                 return $this->response->redirect('/');
             }
             $messages = $user->getMessages();
-            // $print = '';
             foreach ($messages as $message) {
                 $errorMessage .= $message->getMessage(). "\n";
             }
