@@ -60,4 +60,28 @@ class FlightService
     {
         return Flight::count();
     }
+
+    public function findFlights(array $airplane)
+    {
+        $data = Flight::findByOrigin(
+            $airplane['location'],
+            [
+                'conditions' => 'idAirplane = "NULL"',
+            ]
+        );
+        if( $data == false) {
+            return [];
+        }
+        $flights = [];
+        foreach ($data as $flight) {
+            $flights [] = [
+                'id' => $flight->id,
+                'passengers' => $flight->passengers,
+                'origin' => $flight->origin,
+                'destiny' => $flight->destiny,
+                'idAirplane' => $flight->idAirplane,
+            ];
+        }
+        return $flights;
+    }
 }

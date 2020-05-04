@@ -67,4 +67,23 @@ class AirplaneService
     {
         return Airplane::count();
     }
+
+    public function findById($id)
+    {
+        $data = Airplane::findById($id);
+        if( $data == false) {
+            return [];
+        }
+        $airplane = [];
+        foreach ($data as $plane) {
+            $airplane = [
+                'id' => $plane->id,
+                'passengers' => $plane->passengers,
+                'location' => $plane->location,
+                'destiny' => $plane->destiny,
+                'idFlight' => $plane->idFlight,
+            ];
+        }
+        return $airplane; 
+    }
 }
