@@ -19,7 +19,7 @@
                 .'<td>'.$airplane['passengers'].'</td>'
                 .'<td>'.$airplane['location'].'</td>';
                 if (empty($airplane['destiny']) && empty($airplane['idFlight'])) {
-                    $print .= '<td>Not assigned</td>';
+                    $print .= '<td>Not assigned</td><td><a href="/airplanes/assign_a_flight/'.$airplane['id'].'">Assign a flight</a></td>';
                 } else {
                     $print .= '<td>'.$airplane['destiny'].'</td>'
                     .'<td>'.$airplane['idFlight'].'</td>';

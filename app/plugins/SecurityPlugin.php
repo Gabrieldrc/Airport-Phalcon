@@ -73,6 +73,7 @@ class SecurityPlugin extends Plugin
             'flights'     => ['list'],
             'newflight' => ['new', 'form'],
             'newplane'     => ['new', 'form'],
+            'airplaneassign'    => ['form','assign'],
         ];
 
         foreach ($privateResources as $resourceName => $actions) {

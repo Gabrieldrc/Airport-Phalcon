@@ -116,4 +116,12 @@ $router->addGet(
     ]
 );
 
+$router->addGet(
+    '/airplanes/assign_a_flight/{id}',
+    [
+        'controller' => 'airplaneassign',
+        'action'     => 'form',
+    ]
+);
+
 return $router;
