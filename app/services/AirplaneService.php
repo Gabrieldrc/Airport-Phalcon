@@ -86,4 +86,34 @@ class AirplaneService
         }
         return $airplane; 
     }
+
+    public function assignFlight($idFlight, $idAirplane, $destiny)
+    {
+        $airplane = Airplane::findFirstById($idAirplane);
+        $return = [];
+        $errorMessage = '';
+        if( $airplane == false) {
+            $messages = $airplane->getMessages();
+            foreach ($messages as $message) {
+                $errorMessage .= $message->getMessage(). "\n";
+            }
+        } else {
+            $airplane->idFlight = $idFlight;
+            $airplane->destiny = $destiny;
+            $success = $airplane->save();
+            if ($success) {
+                return $return [] = true;
+            }
+            $messages = $airplane->getMessages();
+            foreach ($messages as $message) {
+                $errorMessage .= $message->getMessage(). "\n";
+            }
+        }
+        $return =
+        [
+            false,
+            $errorMessage,
+        ];
+        return $return;
+    }
 }

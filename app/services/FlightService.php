@@ -63,10 +63,10 @@ class FlightService
 
     public function findFlights(array $airplane)
     {
-        $data = Flight::findByOrigin(
-            $airplane['location'],
+        $data = Flight::find(
             [
-                'conditions' => 'idAirplane = "NULL"',
+                "origin = '".$airplane['location']."'",
+                'idAirplane = "NULL"',
             ]
         );
         if( $data == false) {
@@ -83,5 +83,38 @@ class FlightService
             ];
         }
         return $flights;
+    }
+
+    public function assignAirplane($idFlight, $idAirplane)
+    {
+        $flight = Flight::findFirstById($idFlight);
+        $return = [];
+        $errorMessage = '';
+        if( $flight == false) {
+            $messages = $flight->getMessages();
+            foreach ($messages as $message) {
+                $errorMessage .= $message->getMessage(). "\n";
+            }
+        } else {
+            $flight->idAirplane = $idAirplane;
+            $success = $flight->save();
+            if ($success) {
+                return $return =
+                [
+                    true,
+                    $flight->destiny,
+                ];
+            }
+            $messages = $flight->getMessages();
+            foreach ($messages as $message) {
+                $errorMessage .= $message->getMessage(). "\n";
+            }
+        }
+        $return =
+        [
+            false,
+            $errorMessage,
+        ];
+        return $return;
     }
 }

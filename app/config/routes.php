@@ -124,4 +124,20 @@ $router->addGet(
     ]
 );
 
+$router->addGet(
+    '/airplanes/assign_a_flight/{id}/{pag}',
+    [
+        'controller' => 'airplaneassign',
+        'action'     => 'form',
+    ]
+);
+
+$router->addPost(
+    '/airplanes/assign_a_flight/{id}',
+    [
+        'controller' => 'airplaneassign',
+        'action'     => 'assign',
+    ]
+);
+
 return $router;

@@ -1,5 +1,5 @@
 <article>
-    <div>
+    <div class="column2">
         <h4>Airplane id#<?php echo $id ?>:</h4>
         <ul>
             <li>Location: <?php echo $location ?>.</li>
@@ -7,7 +7,72 @@
             <li>State: <?php echo $state ?>.</li>
         </ul>
     </div>
-    <div>
-        <?php var_dump($flights); ?>
+    <div class="column2">
+        <h4>Flights table:</h4>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">origin</th>
+                    <th scope="col">destiny</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                $flights;
+                if (!empty($flights)) {
+                    foreach ($flights as $flight) {
+                        $print = '<tr>'
+                        .'<th scope = "row">'.$flight['id'].'</th>'
+                        .'<td>'.$flight['origin'].'</td>'
+                        .'<td>'.$flight['destiny'].'</td>';
+                        $print .= '</tr>';
+                        echo $print;
+                    }
+                } else {
+                    echo '<tr ><th scope = "row">There are no registered flights</th></tr>';
+                }
+                ?>
+            </tbody>
+        </table>
+        <div class="form-row">
+            <div class="col">
+                <?php
+                    if ($cycle > 1) {
+                        for ($i = 1; $i <= $cycle; $i++) {
+                            echo '<a href="/airplanes/assign_a_flight/'.$id.'/'.$i.'" button type="submit" class="btn btn-primary">'.$i.'</a>';
+                        }
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+    <div class ="fil">
+        <form action = '/airplanes/assign_a_flight/<?php echo $id?>' method = 'Post'>
+        <div class="form-row">
+            <label for="fname">Airplane #id:</label>
+            <div class="col">
+                <input type="hidden" name="idAirplane" value="<?php echo $id ?>">
+                <input type="text" class="form-control" name="idAirplane" value="<?php echo $id ?>" disabled>
+            </div>
+            <label for="fname">Flight #id:</label>
+            <div class="col">
+                <input type="text" class="form-control" name="idFlight">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+        </form>
+        <br>
+        <?php
+        if (!empty($message)) {
+            echo '
+            <div class="error">
+            <p>Sorry, the following problems were generated: '.$message.'</p>
+            </div>
+            ';
+        }
+        ?>
     </div>
 </article>
