@@ -1,4 +1,5 @@
 <article>
+<h3>Airplanes:</h3>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -18,7 +19,7 @@
                 .'<th scope = "row">'.$airplane['id'].'</th>'
                 .'<td>'.$airplane['passengers'].'</td>'
                 .'<td>'.$airplane['location'].'</td>';
-                if (empty($airplane['destiny']) && empty($airplane['idFlight'])) {
+                if (empty($airplane['destiny']) && $airplane['idFlight']==='NULL') {
                     $print .= '<td>Not assigned</td><td><a href="/airplanes/assign_a_flight/'.$airplane['id'].'">Assign a flight</a></td>';
                 } else {
                     $print .= '<td>'.$airplane['destiny'].'</td>'

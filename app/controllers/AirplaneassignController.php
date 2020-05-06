@@ -7,23 +7,21 @@ class AirplaneassignController extends Controller
     public function formAction($id)
     {
         $airplane = $this->airplaneService->findById($id);
-        if ($airplane == false) {
-            $this->response->redirect('/airplanes');
+        if (!$airplane) {
+            return $this->response->redirect('/airplanes');
         }
-        $flights = $this->flightService->findFlights($airplane);
-        $this->view->setVar('id',$id);
-        $this->view->setVar('location',$airplane['location']);
-        $this->view->setVar('passengers',$airplane['passengers']);
-        if (empty($airplane['idFlight'])) {
-            $this->view->setVar('state', 'available');
+        if ($airplane->idFlight !== 'NULL') {
+            $this->view->setVar('disabled', 'disabled');
+            $this->view->setVar('state', $airplane->idFlight);
         } else {
-            $this->view->setVar('state', $airplane['idFlight']);
+            $this->view->setVar('state', 'available');
         }
-        if (!empty($flights)) {
-            $this->view->setVar('flights', $flights);
-        }
+        $this->view->setVar('id',$id);
+        $this->view->setVar('location',$airplane->location);
+        $this->view->setVar('passengers',$airplane->passengers);    
+        $flights = $this->flightService->findFlightsByOrigin($airplane->location);
+        $this->view->setVar('flights', $flights);
         if ($this->session->has('error')) {
-            // Retrieve its value
             $error = $this->session->get('error');
             $this->view->setVar('message',$error);
             $this->session->remove('error');
@@ -36,18 +34,25 @@ class AirplaneassignController extends Controller
         $idAirplane = $datos['idAirplane'];
         $idFlight = $datos['idFlight'];
         $errorMessage = '';
-        $return1 = $this->flightService->assignAirplane($idFlight, $idAirplane);
-        // var_dump($return1);
-        if ($return1[0] === true) {
-            $return2 = $this->airplaneService->assignFlight($idFlight, $idAirplane, $return1[1]);
-            // var_dump($return2);die;
-            if ($return2 === true) {
-                return $this->response->redirect('/airplanes');
-            }
-            $errorMessage .= $return2[1];
-        } else {
-            $errorMessage .= $return1[1];
+        $airplane = $this->airplaneService->findById($idAirplane);
+        if ($airplane === false) {
+            $this->session->set('error', 'wrong to find Airplane');
+            return $this->response->redirect('/airplanes/assign_a_flight/'.$idAirplane);
         }
+        $flight = $this->flightService->findById($idFlight);
+        if ($flight == false) {
+            $this->session->set('error', 'wrong to find Flight');
+            return $this->response->redirect('/airplanes/assign_a_flight/'.$idAirplane);
+        }
+        if ($airplane->location !== $flight->origin) {
+            $this->session->set('error', 'do not start from the same location');
+            return $this->response->redirect('/airplanes/assign_a_flight/'.$idAirplane);
+        }
+        $return = $this->airplaneService->assignFlight($airplane,$flight);
+        if ($return === true) {
+            return $this->response->redirect('/airplanes');
+        }
+        $errorMessage .= $return[1];
         $this->session->set('error', $errorMessage);
         return $this->response->redirect('/airplanes/assign_a_flight/'.$idAirplane);
     }

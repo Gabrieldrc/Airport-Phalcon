@@ -1,4 +1,5 @@
 <article>
+<h3>Flights:</h3>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -19,7 +20,7 @@
                 .'<td>'.$flight['passengers'].'</td>'
                 .'<td>'.$flight['origin'].'</td>'
                 .'<td>'.$flight['destiny'].'</td>';
-                if (empty($flight['idAirplane'])) {
+                if ($flight['idAirplane'] === 'NULL') {
                     $print .= '<td>Not assigned</td>';
                 } else {
                     $print .= '<td>'.$flight['idAirplane'].'</td>';

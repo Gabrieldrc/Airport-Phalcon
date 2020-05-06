@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `airplane` (
     `passengers` INT(255) NOT NULL,
     `location` VARCHAR(255) NOT NULL,
     `destiny` VARCHAR(255) NULL,
-    `idFlight` VARCHAR(255) NULL
+    `idFlight` VARCHAR(255) NOT NULL
                                  );
 
 CREATE TABLE IF NOT EXISTS `flight` (
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `flight` (
     `passengers` INT(255) NOT NULL,
     `origin` VARCHAR(255) NOT NULL,
     `destiny` VARCHAR(255) NULL,
-    `idAirplane` VARCHAR(255) NULL
+    `idAirplane` VARCHAR(255) NOT NULL
                                  );
 
 -- $id;

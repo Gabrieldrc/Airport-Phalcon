@@ -22,6 +22,7 @@ class AirplaneService
             [
                 "location" => $location,
                 "passengers" => $passengers,
+                "idFlight"  => 'NULL',
             ]
         );
         $errorMessage = '';
@@ -70,50 +71,41 @@ class AirplaneService
 
     public function findById($id)
     {
-        $data = Airplane::findById($id);
-        if( $data == false) {
-            return [];
-        }
-        $airplane = [];
-        foreach ($data as $plane) {
-            $airplane = [
-                'id' => $plane->id,
-                'passengers' => $plane->passengers,
-                'location' => $plane->location,
-                'destiny' => $plane->destiny,
-                'idFlight' => $plane->idFlight,
-            ];
-        }
-        return $airplane; 
+        return Airplane::findFirstById($id);
     }
 
-    public function assignFlight($idFlight, $idAirplane, $destiny)
+    public function assignFlight(Airplane $airplane, Flight $flight)
     {
-        $airplane = Airplane::findFirstById($idAirplane);
-        $return = [];
         $errorMessage = '';
-        if( $airplane == false) {
-            $messages = $airplane->getMessages();
+        if ($airplane->idFlight !== 'NULL' or $flight->idAirplane !== 'NULL') {
+            return [
+                false,
+                'Have already assigned',
+            ];
+        }
+        $airplane->idFlight = $flight->id;
+        $airplane->destiny = $flight->destiny;
+        $flight->idAirplane = $airplane->id;
+        $successFlight = $flight->save();
+        $successAirplane = $airplane->save();
+        if ($successFlight && $successAirplane) {
+            return true;
+        }
+        if (!$successFlight) {
+            $messages = $flight->getMessages();
             foreach ($messages as $message) {
                 $errorMessage .= $message->getMessage(). "\n";
             }
-        } else {
-            $airplane->idFlight = $idFlight;
-            $airplane->destiny = $destiny;
-            $success = $airplane->save();
-            if ($success) {
-                return $return [] = true;
-            }
+        }
+        if (!$successAirplane) {
             $messages = $airplane->getMessages();
             foreach ($messages as $message) {
                 $errorMessage .= $message->getMessage(). "\n";
             }
         }
-        $return =
-        [
+        return [
             false,
             $errorMessage,
         ];
-        return $return;
     }
 }
