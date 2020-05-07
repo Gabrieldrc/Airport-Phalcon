@@ -4,6 +4,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
 
 /* Style the header */
@@ -15,40 +16,58 @@ header {
     text-align: center;
     font-size: 35px;
     color: white;
+    height: 20vh;
 }
 
-/* Create two columns/boxes that floats next to each other */
+  /* Create two columns/boxes that floats next to each other */
 nav {
+    overflow: hidden;
     float: left;
-    width: 15%;
+    width: auto;
     background: #99ccff;
-    height: 770px;
-}
-
-/* Style the list inside the menu */
+    height: 70vh;
+    }
+    
+    /* Style the list inside the menu */
 nav ul {
     list-style-type: none;
-    padding: 0;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+
+nav a:hover {
+    background-color: #000099;
+    color: white;
 }
 
 .formu {
     float: left;
-    padding: 5em;
-    width: 85%;
+    padding: 20px 0px 0px 100px;
+    width: 90%;
     background-color: white;
-    /* only for demonstration, should be removed */
-    height: 770px;
     align-content: center;
     font-size: medium;
+    height: 70vh;
+}
+
+input [type=text]{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
 }
 
 article {
     float: left;
-    padding: 20px;
-    width: 85%;
+    padding: 50px;
+    width: 90%;
     background-color: white;
     /* only for demonstration, should be removed */
-    height: 770px;
+    height: 70vh;
 }
 
 .error {
@@ -58,10 +77,17 @@ article {
     color: red;
 }
 /* Clear floats after the columns */
+.mainBody {
+    position: absolute;
+    top: 50px;
+    bottom: 10px;
+    width:100%;
+}
 section:after {
     content: "";
     display: table;
     clear: both;
+    
 }
 
 /* Style the footer */
@@ -70,19 +96,42 @@ footer {
     padding: 10px;
     text-align: center;
     color: white;
+    height: 10vh;
+}
+
+.column2 {
+    float: left;
+    padding: 0px;
+    width: 45%;
+    height: 50vh;
+    background-color: white;
+    /* only for demonstration, should be removed */
+    /* height: 70vh; */
+}
+
+.fil {
+    float: left;
+    padding: 0px;
+    width: 80%;
+    height: 10vh;
+    text-align: center;
+    background-color: white;
 }
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 100%) {
     nav, article,.formu {
         width: 100%;
-        height: auto;
+        /* height: 100vh; */
         }
 }
 
-@media (max-width: 100%) {
-    nav, formu {
-        width: 100%;
-        height: auto;
-        }
+@media (max-height: 100vh) {
+    nav, header,footer {
+    }
+}
+
+@media (max-height: 100vh) {
+    .column2, .fil{
+    }
 }
