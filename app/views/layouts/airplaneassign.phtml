@@ -50,6 +50,11 @@
     <div class ="fil">
         <form action = '/airplanes/assign_a_flight/<?php echo $id?>' method = 'Post'>
         <div class="form-row">
+            <div class="col">
+                <a href="/airplanes">
+                    <img src="/icons/backIcon.svg" alt="" width="32" height="32">
+                </a>
+            </div>
             <label for="fname">Airplane #id:</label>
             <div class="col">
                 <input type="hidden" name="idAirplane" value="<?php echo $id ?>">
