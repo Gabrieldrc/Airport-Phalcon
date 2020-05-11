@@ -1,6 +1,6 @@
 <?php
 
-class FlightService
+final class FlightService
 {
     public function newFlight(String $origin, String $destiny)
     {

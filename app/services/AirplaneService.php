@@ -1,8 +1,8 @@
 <?php
 
-class AirplaneService
+final class AirplaneService
 {
-    public function newAirplane(String $location, int $passengers)
+    public function newAirplane(String $location, int $passengers): array
     {
         /**
          * This fuction save a new Airplane on
