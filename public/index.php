@@ -5,11 +5,11 @@ use Phalcon\Config\Adapter\Ini as ConfigIni;
 
 define(
     'APP_PATH',
-    realpath('..') . '/'
+    realpath('..') . '/app/'
 );
 
 $config = new ConfigIni(
-    APP_PATH.'app/config/config.ini'
+    APP_PATH.'config/config.ini'
 );
 
 //Uso exclusivo para encontrar errores, de otra forma, eliminar del codigo
@@ -17,9 +17,9 @@ $config = new ConfigIni(
 // $debug->listen();
 //
 
-require APP_PATH.'app/config/loader.php';
+require APP_PATH.'config/loader.php';
 
-require APP_PATH.'app/config/services.php';
+require APP_PATH.'config/services.php';
 
 $application = new Application($container);
 
