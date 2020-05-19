@@ -7,16 +7,20 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
         crossorigin="anonymous">
     <link rel="stylesheet" href="/css/file.css">
+    <script src="javascript/reloj.js"></script>
     
     <title>Phalcon Airport</title>
 </head>
-<body>
+<body onload="mueveReloj()">
     <header>
         <h1>Airlines</h1>
     </header>
     <div class ="mainbody">
         <section>
             <nav>
+                <form name="form_reloj">
+                    <input type="text" name="reloj" size="10" disabled>
+                </form>
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link" href="/principal">Home</a>
