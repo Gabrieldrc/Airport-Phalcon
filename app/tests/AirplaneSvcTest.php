@@ -22,11 +22,8 @@ final class AirplaneSvcTest extends TestCase
 
     public function testFunctionName(): void
     {
-        $return = $this->invokeMethod(
-            $this->reflection,
-            'newAirplane',
-            ['location',25]);
-        var_dump($return);
+        $return = $this->service->newAirplane('location',25);
+        // var_dump($return);
         $this->assertTrue(True);
     }
 }
